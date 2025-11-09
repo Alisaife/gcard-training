@@ -7,118 +7,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --moe-primary:#00A79D;   /* تركواز */
-    --moe-green:#19B37A;     /* أخضر */
-    --ink:#0F3D3E;           /* نص */
-    --bg:#F8FBFB;            /* خلفية */
-    --soft:#E6F5F3;          /* تينت */
-    --line:#D3E9E6;          /* حدود */
-    --link:#007C76;          /* روابط */
+    --moe-primary:#00A79D; --moe-green:#19B37A; --ink:#0F3D3E;
+    --bg:#F8FBFB; --soft:#E6F5F3; --line:#D3E9E6; --link:#007C76;
   }
+  html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',system-ui,sans-serif;font-size:16px;line-height:1.7}
 
-  html{box-sizing:border-box}
-  *,*:before,*:after{box-sizing:inherit}
-  body{
-    margin:0;background:var(--bg);color:var(--ink);
-    font-family:'Cairo',system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;
-    font-size:16px; line-height:1.7;
-  }
+  header{background:linear-gradient(0deg,var(--soft),#fff);border-bottom:1.5px solid var(--line);
+    padding:clamp(14px,3vw,22px) 12px;text-align:center}
+  .logo{width:min(42vw,170px);height:auto;display:block;margin:0 auto 8px}
+  .t1{margin:4px 0;font-weight:700;font-size:clamp(18px,2.6vw,22px)}
+  .t2{margin:2px 0;font-weight:700;color:var(--moe-primary);font-size:clamp(16px,2.3vw,19px)}
 
-  /* ===== Header ===== */
-  header{
-    background:linear-gradient(0deg,var(--soft),#FFFFFF);
-    border-bottom:1.5px solid var(--line);
-    padding:clamp(14px,3vw,22px) 12px; text-align:center;
-  }
-  .logo{width:min(42vw,170px); height:auto; display:block; margin:0 auto 8px}
-  .t1{margin:4px 0; font-weight:700; font-size:clamp(18px,2.6vw,22px)}
-  .t2{margin:2px 0; font-weight:700; color:var(--moe-primary); font-size:clamp(16px,2.3vw,19px)}
-
-  /* ===== Layout ===== */
   .wrap{max-width:1100px;margin:0 auto;padding:clamp(12px,3vw,22px)}
-  h1{
-    margin:.2rem 0 1rem; font-size:clamp(20px,3.6vw,26px); font-weight:700; text-align:center;
-  }
-  .dash{
-    width:min(220px,60%); height:4px; margin:8px auto 14px;
-    background:linear-gradient(90deg,var(--moe-primary),var(--moe-green)); border-radius:3px;
-  }
+  h1{margin:.2rem 0 1rem;font-size:clamp(20px,3.6vw,26px);font-weight:700;text-align:center}
+  .dash{width:min(220px,60%);height:4px;margin:8px auto 14px;
+    background:linear-gradient(90deg,var(--moe-primary),var(--moe-green));border-radius:3px}
 
-  /* مدير المدرسة */
-  .principal{
-    display:grid; place-items:center;
-    padding:12px 16px; margin:0 0 14px;
-    background:linear-gradient(135deg,#E9FAF7,#D7F5EF);
-    border:2px solid var(--moe-primary); border-radius:14px;
-    font-weight:700; font-size:clamp(14px,2.5vw,18px);
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-  }
+  .principal{display:grid;place-items:center;padding:12px 16px;margin:0 0 14px;
+    background:linear-gradient(135deg,#E9FAF7,#D7F5EF);border:2px solid var(--moe-primary);
+    border-radius:14px;font-weight:700;font-size:clamp(14px,2.5vw,18px);box-shadow:0 2px 8px rgba(0,0,0,.06)}
   .principal b{color:var(--link)}
 
-  /* تبويبات */
-  .tabs{
-    display:flex; gap:8px; overflow:auto; -webkit-overflow-scrolling:touch;
-    padding:4px 2px 6px; scroll-snap-type:x proximity;
-  }
-  .tab{
-    border:1px solid var(--line); background:#fff; color:var(--ink);
-    padding:10px 14px; border-radius:12px; cursor:pointer; flex:0 0 auto;
-    font-weight:600; scroll-snap-align:center; min-width:max(140px,35%);
-  }
-  .tab.active{
-    background:linear-gradient(135deg,var(--moe-primary),var(--moe-green)); color:#fff; border-color:transparent;
-  }
+  .tabs{display:flex;gap:8px;overflow:auto;-webkit-overflow-scrolling:touch;padding:4px 2px 6px;scroll-snap-type:x proximity}
+  .tab{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:12px;cursor:pointer;
+    flex:0 0 auto;font-weight:600;scroll-snap-align:center;min-width:max(140px,35%)}
+  .tab.active{background:linear-gradient(135deg,var(--moe-primary),var(--moe-green));color:#fff;border-color:transparent}
 
-  .panel{display:none; margin-top:10px}
-  .panel.active{display:block}
+  .panel{display:none;margin-top:10px}.panel.active{display:block}
 
-  .bar{
-    display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 8px;
-  }
-  input[type="search"]{
-    flex:1 1 220px; padding:12px; border-radius:12px; border:1px solid var(--line);
-    background:#fff; color:var(--ink); font-size:16px;
-  }
-  .btn{
-    padding:12px 14px; border-radius:12px; border:1px solid var(--moe-primary);
-    background:var(--moe-primary); color:#fff; cursor:pointer; font-weight:700;
-    flex:0 0 auto;
-  }
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 8px}
+  input[type="search"]{flex:1 1 220px;padding:12px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:16px}
+  .btn{padding:12px 14px;border-radius:12px;border:1px solid var(--moe-primary);background:var(--moe-primary);color:#fff;cursor:pointer;font-weight:700}
 
-  /* جدول */
   .table-wrap{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  table{width:100%; border-collapse:separate; border-spacing:0}
-  th,td{padding:12px; border-bottom:1px solid var(--line)}
-  th{background:#F3FBFA; color:#0b3334; text-align:start; font-weight:700}
+  table{width:100%;border-collapse:separate;border-spacing:0}
+  th,td{padding:12px;border-bottom:1px solid var(--line)}
+  th{background:#F3FBFA;color:#0b3334;text-align:start;font-weight:700}
   tr:hover td{background:#F6FBFB}
-  a{color:var(--link); text-decoration:none}
-  a:hover{text-decoration:underline}
-  .chip{display:inline-block; background:#ECF9F7; border:1px solid var(--line); color:#0E6C66;
-        padding:.2rem .5rem; border-radius:999px; font-size:12px}
+  a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+  .chip{display:inline-block;background:#ECF9F7;border:1px solid var(--line);color:#0E6C66;padding:.2rem .5rem;border-radius:999px;font-size:12px}
 
-  /* ===== Mobile cards: ≤ 640px ===== */
   @media (max-width:640px){
     th{display:none}
-    table, tbody, tr, td{display:block; width:100%}
+    table,tbody,tr,td{display:block;width:100%}
     tr{border-bottom:1px solid var(--line)}
-    td{
-      border:none; padding:10px 12px;
-      display:flex; justify-content:space-between; gap:10px;
-    }
-    td::before{
-      content:attr(data-label);
-      color:#0b3334; font-weight:700;
-    }
-    .chip{font-size:13px}
-    .tab{min-width:60%}
-    .logo{width:min(50vw,150px)}
+    td{border:none;padding:10px 12px;display:flex;justify-content:space-between;gap:10px}
+    td::before{content:attr(data-label);color:#0b3334;font-weight:700}
+    .tab{min-width:60%}.logo{width:min(50vw,150px)}
   }
 
-  footer{
-    text-align:center; margin:22px 0 0; padding:16px 10px; background:#fff;
-    border-top:1.5px solid var(--line); color:#0e4d4f; font-size:clamp(14px,2.2vw,15px)
-  }
-  footer a{color:var(--moe-primary); font-weight:700}
+  footer{text-align:center;margin:22px 0 0;padding:16px 10px;background:#fff;border-top:1.5px solid var(--line);color:#0e4d4f;font-size:clamp(14px,2.2vw,15px)}
+  footer a{color:var(--moe-primary);font-weight:700}
 </style>
 </head>
 <body>
@@ -131,7 +71,6 @@
 <main class="wrap">
   <h1>دورات التطوير المهني 1447هـ</h1>
   <div class="dash"></div>
-
   <div class="principal">مدير المدرسة: <b>محمد عيسى شماخي</b></div>
 
   <nav class="tabs" id="tabs"></nav>
@@ -144,47 +83,37 @@
 
 <script>
 const datasets = [
-  {
-    title: "برامج المواد الدراسية",
-    rows: [
-      ["الاستدلال وإدراك المفاهيم في الرياضيات","معلمو الرياضيات","10","https://niepd.futurex.sa/courses/course-v1:NIEPD+0013+2023/about"],
-      ["تعليم وتعلم العلوم بطريقة المفاهيم","معلمو العلوم","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0015+2023/about"],
-      ["الخدمات الانتقالية للطلاب ذوي الإعاقة","معلمو التربية الخاصة","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0020+2023/about"],
-      ["تصميم الوسائط التعليمية المتعددة","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0016+2023/about"],
-      ["التقويم المرتكز حول المتعلم في تدريس الرياضيات","معلمو الرياضيات","9","https://niepd.futurex.sa/courses/course-v1:niepd+0026_niepd+N_2024/about"],
-      ["أسس ومبادئ التوجيه الطلابي","الموجهون الطلابيون","11","https://niepd.futurex.sa/courses/course-v1:NIEPD+007+2023/about"],
-      ["منطلقات علمية ومهارات صياغة الأسئلة الصفية","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+008+2023/about"],
-      ["البحث الإجرائي وتطوير الميدان التعليمي","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+0013+2023/about"]
-    ]
-  },
-  {
-    title: "برامج النمو المهني العام",
-    rows: [
-      ["خصائص النمو لطلاب المرحلة الابتدائية وتطبيقاتها","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+004+2023/about"],
-      ["الوقاية النفسية الأولية في البيئة المدرسية","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+niepd_0028+n_3/about"],
-      ["تخطيط التدريس","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+005+2023/about"],
-      ["تضمين قيم المواطنة الرقمية","جميع المعلمين","7","https://niepd.futurex.sa/courses/course-v1:NIEPD+009+2023/about"],
-      ["توظيف الذكاء الاصطناعي في التعليم","جميع المعلمين","15","https://niepd.futurex.sa/courses/course-v1:NIEPD+009+DTP_AI_NIEPD_DL_040/about"],
-      ["تعزيز استراتيجيات التدريس لدى معلمي اللغة العربية","معلمو اللغة العربية","8","https://niepd.futurex.sa/courses/course-v1:NIEPD+p03+2025/about"],
-      ["تنمية التعلم النشط","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0017+2023/about"]
-    ]
-  },
-  {
-    title: "برامج التعليم الإلكتروني والإدارة الصفية",
-    rows: [
-      ["التدريب على منهج التدخل المبكر","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+c-001+2023/about"],
-      ["إدارة البيئة الصفية","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0012+2023/about"],
-      ["تنمية مهارات التفكير الناقد في بيئات التعلم الرقمي","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+002+2023/about"],
-      ["تصميم وتقديم الملصقات العلمية البحثية","الباحثون والمعلمون","2","https://niepd.futurex.sa/courses/course-v1:NIEPD+0011+2023/about"],
-      ["التدريس الفعّال","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+W051+2025/about"]
-    ]
-  }
+  { title:"برامج المواد الدراسية", rows:[
+    ["الاستدلال وإدراك المفاهيم في الرياضيات","معلمو الرياضيات","10","https://niepd.futurex.sa/courses/course-v1:NIEPD+0013+2023/about"],
+    ["تعليم وتعلم العلوم بطريقة المفاهيم","معلمو العلوم","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0015+2023/about"],
+    ["الخدمات الانتقالية للطلاب ذوي الإعاقة","معلمو التربية الخاصة","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0020+2023/about"],
+    ["تصميم الوسائط التعليمية المتعددة","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0016+2023/about"],
+    ["التقويم المرتكز حول المتعلم في تدريس الرياضيات","معلمو الرياضيات","9","https://niepd.futurex.sa/courses/course-v1:niepd+0026_niepd+N_2024/about"],
+    ["أسس ومبادئ التوجيه الطلابي","الموجهون الطلابيون","11","https://niepd.futurex.sa/courses/course-v1:NIEPD+007+2023/about"],
+    ["منطلقات علمية ومهارات صياغة الأسئلة الصفية","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+008+2023/about"],
+    ["البحث الإجرائي وتطوير الميدان التعليمي","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+0013+2023/about"]
+  ]},
+  { title:"برامج النمو المهني العام", rows:[
+    ["خصائص النمو لطلاب المرحلة الابتدائية وتطبيقاتها","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+004+2023/about"],
+    ["الوقاية النفسية الأولية في البيئة المدرسية","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+niepd_0028+n_3/about"],
+    ["تخطيط التدريس","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+005+2023/about"],
+    ["تضمين قيم المواطنة الرقمية","جميع المعلمين","7","https://niepd.futurex.sa/courses/course-v1:NIEPD+009+2023/about"],
+    ["توظيف الذكاء الاصطناعي في التعليم","جميع المعلمين","15","https://niepd.futurex.sa/courses/course-v1:NIEPD+009+DTP_AI_NIEPD_DL_040/about"],
+    ["تعزيز استراتيجيات التدريس لدى معلمي اللغة العربية","معلمو اللغة العربية","8","https://niepd.futurex.sa/courses/course-v1:NIEPD+p03+2025/about"],
+    ["تنمية التعلم النشط","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0017+2023/about"]
+  ]},
+  { title:"برامج التعليم الإلكتروني والإدارة الصفية", rows:[
+    ["التدريب على منهج التدخل المبكر","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+c-001+2023/about"],
+    ["إدارة البيئة الصفية","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0012+2023/about"],
+    ["تنمية مهارات التفكير الناقد في بيئات التعلم الرقمي","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+002+2023/about"],
+    ["تصميم وتقديم الملصقات العلمية البحثية","الباحثون والمعلمون","2","https://niepd.futurex.sa/courses/course-v1:NIEPD+0011+2023/about"],
+    ["التدريس الفعّال","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+W051+2025/about"]
+  ]}
 ];
 
 const tabs = document.getElementById('tabs');
 const panels = document.getElementById('panels');
 
-/* بناء التبويبات + الجداول */
 datasets.forEach((ds,i)=>{
   const tab = document.createElement('button');
   tab.className = 'tab' + (i===0?' active':'');
@@ -212,7 +141,6 @@ function toolbar(ds){
     a.download = ds.title + '.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500);
   });
 
-  /* فلترة مباشرة */
   search.addEventListener('input', e=>{
     const q = e.target.value.trim();
     const tbody = bar.nextSibling.querySelector('tbody');
@@ -235,8 +163,7 @@ function buildTable(ds){
         <th>رابط التسجيل</th>
       </tr>
     </thead>
-    <tbody></tbody>
-  `;
+    <tbody></tbody>`;
   renderRows(ds, table.querySelector('tbody'), '');
   wrap.appendChild(table);
   return wrap;
@@ -248,11 +175,10 @@ function renderRows(ds, tbody, q){
   rows.forEach(r=>{
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td data-label="اسم البرنامج">${escape(r[0])}</td>
-      <td data-label="الفئة المستهدفة"><span class="chip">${escape(r[1])}</span></td>
-      <td data-label="عدد الساعات">${escape(r[2])}</td>
-      <td data-label="رابط التسجيل"><a target="_blank" rel="noopener" href="${r[3]}">فتح الرابط</a></td>
-    `;
+      <td data-label="اسم البرنامج">${escapeHtml(r[0])}</td>
+      <td data-label="الفئة المستهدفة"><span class="chip">${escapeHtml(r[1])}</span></td>
+      <td data-label="عدد الساعات">${escapeHtml(r[2])}</td>
+      <td data-label="رابط التسجيل"><a target="_blank" rel="noopener" href="${r[3]}">فتح الرابط</a></td>`;
     tbody.appendChild(tr);
   });
 }
@@ -262,9 +188,15 @@ function switchTab(i){
   document.querySelectorAll('.panel').forEach((el,idx)=>el.classList.toggle('active', idx===i));
 }
 
-function escape(s){return String(s)
-  .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
-  .replaceAll('"','&quot;').replaceAll("'","&#039;');}
+/* ✅ الإصلاح: إغلاق الأقواس صحيح */
+function escapeHtml(s){
+  return String(s)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
+}
 </script>
 </body>
 </html>
