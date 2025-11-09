@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>دورات التطوير المهني 1447هـ - متوسطة الأندلس بجازان</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --moe-primary:#00A79D;
+    --moe-green:#19B37A;
+    --moe-dark:#0F3D3E;
+    --moe-soft:#E6F5F3;
+    --moe-line:#D3E9E6;
+    --white:#fff;
+  }
+  html,body{height:100%}
+  body{margin:0;background:var(--white);color:var(--moe-dark);font-family:'Cairo',sans-serif;font-size:16px;}
+
+  header{
+    background:linear-gradient(0deg,var(--moe-soft),#F8FBFB);
+    border-bottom:2px solid var(--moe-line);
+    text-align:center;
+    padding:20px 10px;
+  }
+  header img{
+    width:160px;
+    margin-bottom:10px;
+  }
+  header h2{margin:5px 0;color:var(--moe-dark);font-size:22px;font-weight:700}
+  header h3{margin:5px 0;color:var(--moe-primary);font-size:19px;font-weight:600}
+
+  .wrap{max-width:1200px;margin:22px auto;padding:0 16px;text-align:center}
+  h1{font-size:26px;margin:0 0 20px;color:var(--moe-dark);font-weight:700;position:relative;display:inline-block;}
+  h1::after{
+    content:"";display:block;width:60%;height:4px;background:linear-gradient(90deg,var(--moe-primary),var(--moe-green));
+    margin:8px auto;border-radius:3px;
+  }
+
+  /* بطاقة المدير */
+  .principal-card{
+    display:inline-block;
+    background:linear-gradient(135deg,#E9FAF7,#D7F5EF);
+    border:2px solid var(--moe-primary);
+    border-radius:14px;
+    padding:10px 22px;
+    margin-bottom:22px;
+    color:var(--moe-dark);
+    font-weight:700;
+    font-size:17px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;justify-content:center}
+  .tab{
+    border:1px solid var(--moe-line);
+    background:#fff;color:var(--moe-dark);
+    padding:9px 14px;border-radius:12px;cursor:pointer;transition:0.2s;
+  }
+  .tab:hover{background:#f1fdfa}
+  .tab.active{
+    background:linear-gradient(135deg,var(--moe-primary),var(--moe-green));
+    color:#fff;border-color:transparent;font-weight:700
+  }
+  .panel{display:none;margin-top:10px;text-align:right}
+  .panel.active{display:block}
+
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}
+  input[type="search"]{
+    flex:1;min-width:220px;padding:10px;border-radius:12px;border:1px solid var(--moe-line);
+    background:#fff;color:var(--moe-dark);font-family:'Cairo',sans-serif;
+  }
+  .btn{
+    padding:10px 14px;border-radius:12px;border:1px solid var(--moe-primary);
+    background:var(--moe-primary);color:#fff;cursor:pointer;font-family:'Cairo',sans-serif;
+  }
+  .btn:hover{filter:brightness(.95)}
+
+  table{
+    width:100%;border-collapse:separate;border-spacing:0;background:#fff;
+    border:1px solid var(--moe-line);border-radius:14px;overflow:hidden;font-family:'Cairo',sans-serif;
+  }
+  th,td{padding:10px 12px;border-bottom:1px solid var(--moe-line)}
+  th{background:#F3FBFA;color:#0b3334;text-align:start}
+  tr:hover td{background:#F6FBFB}
+  a{color:#007C76;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .chip{
+    display:inline-block;background:#ECF9F7;border:1px solid var(--moe-line);
+    color:#0E6C66;padding:.2rem .5rem;border-radius:999px;font-size:12px
+  }
+
+  footer{
+    text-align:center;margin-top:40px;padding:18px 0;
+    border-top:2px solid var(--moe-line);
+    color:#0e4d4f;font-size:15px;background:#F9FCFC;
+  }
+  footer a{
+    color:var(--moe-primary);text-decoration:none;font-weight:bold;font-size:16px;
+  }
+  footer a:hover{text-decoration:underline;color:var(--moe-green);}
+</style>
+</head>
+<body>
+<header>
+  <img src="https://salogos.org/wp-content/uploads/2021/11/UntiTtled-1.png" alt="شعار وزارة التعليم">
+  <h2>الإدارة العامة للتعليم بمنطقة جازان</h2>
+  <h3>متوسطة الأندلس بجازان</h3>
+</header>
+
+<div class="wrap">
+  <h1>دورات التطوير المهني 1447هـ</h1>
+  <div class="principal-card">مدير المدرسة: <span style="color:#007C76;">محمد عيسى شماخي</span></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="panels"></div>
+</div>
+
+<footer>
+  تطوير: <a href="https://x.com/ali_alqhtani05" target="_blank">أ. علي بن أحمد القحطاني</a>
+</footer>
+
+<script>
+const datasets = [
+  {
+    title: "برامج المواد الدراسية",
+    rows: [
+      ["الاستدلال وإدراك المفاهيم في الرياضيات","معلمو الرياضيات","10","https://niepd.futurex.sa/courses/course-v1:NIEPD+0013+2023/about"],
+      ["تعليم وتعلم العلوم بطريقة المفاهيم","معلمو العلوم","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0015+2023/about"],
+      ["الخدمات الانتقالية للطلاب ذوي الإعاقة","معلمو التربية الخاصة","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0020+2023/about"],
+      ["تصميم الوسائط التعليمية المتعددة","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0016+2023/about"],
+      ["التقويم المرتكز حول المتعلم في تدريس الرياضيات","معلمو الرياضيات","9","https://niepd.futurex.sa/courses/course-v1:niepd+0026_niepd+N_2024/about"],
+      ["أسس ومبادئ التوجيه الطلابي","الموجهون الطلابيون","11","https://niepd.futurex.sa/courses/course-v1:NIEPD+007+2023/about"],
+      ["منطلقات علمية ومهارات صياغة الأسئلة الصفية","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+008+2023/about"],
+      ["البحث الإجرائي وتطوير الميدان التعليمي","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+0013+2023/about"]
+    ]
+  },
+  {
+    title: "برامج النمو المهني العام",
+    rows: [
+      ["خصائص النمو لطلاب المرحلة الابتدائية وتطبيقاتها","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+004+2023/about"],
+      ["الوقاية النفسية الأولية في البيئة المدرسية","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+niepd_0028+n_3/about"],
+      ["تخطيط التدريس","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+005+2023/about"],
+      ["تضمين قيم المواطنة الرقمية","جميع المعلمين","7","https://niepd.futurex.sa/courses/course-v1:NIEPD+009+2023/about"],
+      ["توظيف الذكاء الاصطناعي في التعليم","جميع المعلمين","15","https://niepd.futurex.sa/courses/course-v1:NIEPD+009+DTP_AI_NIEPD_DL_040/about"],
+      ["تعزيز استراتيجيات التدريس لدى معلمي اللغة العربية","معلمو اللغة العربية","8","https://niepd.futurex.sa/courses/course-v1:NIEPD+p03+2025/about"],
+      ["تنمية التعلم النشط","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0017+2023/about"]
+    ]
+  },
+  {
+    title: "برامج التعليم الإلكتروني والإدارة الصفية",
+    rows: [
+      ["التدريب على منهج التدخل المبكر","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+c-001+2023/about"],
+      ["إدارة البيئة الصفية","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+0012+2023/about"],
+      ["تنمية مهارات التفكير الناقد في بيئات التعلم الرقمي","جميع المعلمين","5","https://niepd.futurex.sa/courses/course-v1:NIEPD+002+2023/about"],
+      ["تصميم وتقديم الملصقات العلمية البحثية","الباحثون والمعلمون","2","https://niepd.futurex.sa/courses/course-v1:NIEPD+0011+2023/about"],
+      ["التدريس الفعّال","جميع المعلمين","6","https://niepd.futurex.sa/courses/course-v1:NIEPD+W051+2025/about"]
+    ]
+  }
+];
+
+const tabs=document.getElementById("tabs"),panels=document.getElementById("panels");
+
+datasets.forEach((ds,i)=>{
+  const t=document.createElement("button");
+  t.className="tab"+(i===0?" active":"");
+  t.textContent=ds.title;
+  t.onclick=()=>switchTab(i);
+  tabs.appendChild(t);
+
+  const p=document.createElement("div");
+  p.className="panel"+(i===0?" active":"");
+  const s=document.createElement("input");
+  s.type="search";s.placeholder="بحث...";
+  const b=document.createElement("button");
+  b.textContent="تصدير CSV";b.className="btn";
+  const bar=document.createElement("div");
+  bar.className="bar";bar.append(s,b);
+
+  const table=document.createElement("table");
+  table.innerHTML="<thead><tr><th>اسم البرنامج</th><th>الفئة المستهدفة</th><th>عدد الساعات</th><th>رابط التسجيل</th></tr></thead><tbody></tbody>";
+  const tb=table.querySelector("tbody");
+
+  const draw=()=>{
+    tb.innerHTML="";
+    ds.rows.filter(r=>r.join().includes(s.value)).forEach(r=>{
+      tb.innerHTML+=`<tr><td>${r[0]}</td><td><span class='chip'>${r[1]}</span></td><td>${r[2]}</td><td><a href='${r[3]}' target='_blank'>فتح الرابط</a></td></tr>`;
+    });
+  };
+  draw();
+  s.oninput=draw;
+  b.onclick=()=>downloadCSV(ds.title,ds.rows);
+  p.append(bar,table);
+  panels.appendChild(p);
+});
+
+function switchTab(i){
+  document.querySelectorAll(".tab").forEach((t,n)=>t.classList.toggle("active",n===i));
+  document.querySelectorAll(".panel").forEach((p,n)=>p.classList.toggle("active",n===i));
+}
+function downloadCSV(title,rows){
+  const csv=[["اسم البرنامج","الفئة المستهدفة","عدد الساعات","رابط التسجيل"],...rows].map(r=>r.join(",")).join("\n");
+  const blob=new Blob([csv],{type:"text/csv"});const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download=title+".csv";a.click();
+}
+</script>
+</body>
+</html>
