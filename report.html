@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>نموذج تنفيذ استراتيجية داخل الصف - تقرير A4</title>
+<style>
+  :root{
+    --brand:#0ea5e9; --ink:#0f172a; --muted:#475569; --bg:#f8fafc; --line:#e2e8f0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui, -apple-system, Segoe UI, Tahoma, Arial}
+  h1,h2,h3{margin:0 0 .5rem}
+  .wrap{max-width:1200px;margin:auto;padding:24px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+  .grid{display:grid;gap:16px}
+  .grid-2{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  label{display:block;font-weight:600;margin-bottom:6px}
+  input[type="text"],input[type="date"],select,textarea{
+    width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff
+  }
+  textarea{min-height:90px;resize:vertical}
+  table{width:100%;border-collapse:collapse}
+  th,td{border:1px solid var(--line);padding:10px;vertical-align:top}
+  th{background:#f1f5f9;text-align:right}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  button,.btn{
+    appearance:none;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer
+  }
+  .primary{background:var(--brand);color:#fff}
+  .soft{background:#e2f2ff;color:#075985}
+  .danger{background:#fee2e2;color:#991b1b}
+  .ghost{background:#f1f5f9;color:#0f172a}
+  .note{color:var(--muted);font-size:.9rem}
+  /* Report A4 layout */
+  .preview-wrap{margin-top:20px}
+  .a4{
+    width:210mm; min-height:297mm; background:#fff; color:#111827;
+    margin:auto; border:1px solid var(--line); border-radius:0; padding:15mm;
+    box-shadow:0 10px 30px rgba(0,0,0,.06)
+  }
+  .hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:2px solid var(--line);padding-bottom:10px}
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0 16px}
+  .kpi div{border:1px solid var(--line);border-radius:8px;padding:8px}
+  .tag{display:inline-block;background:#ecfeff;color:#0369a1;border:1px solid #bae6fd;padding:.15rem .5rem;border-radius:999px;font-size:.85rem}
+  .section{margin:12px 0}
+  .meta-table th{width:220px}
+  .footer{margin-top:16px;border-top:1px dashed var(--line);padding-top:8px;font-size:.9rem;color:#475569;display:flex;justify-content:space-between}
+  .hide{display:none}
+  /* Print */
+  @media print{
+    body{background:#fff}
+    .wrap>.card:first-of-type, .btns.top, .note.top {display:none !important}
+    .a4{border:none;box-shadow:none;width:auto;min-height:auto;padding:0}
+    @page{size:A4;margin:12mm}
+    .section{page-break-inside:avoid}
+    .activities-table tr{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>نموذج تنفيذ استراتيجية داخل الصف → تقرير A4</h1>
+    <p class="note top">املأ الحقول ثم اضغط <b>معاينة</b>. يمكنك بعدها <b>طباعة</b> أو <b>تحميل PDF</b>.</p>
+
+    <!-- FORM -->
+    <div class="card">
+      <div class="grid grid-3">
+        <div><label>المدرسة</label><input id="school" type="text" placeholder="اسم المدرسة" /></div>
+        <div><label>القسم/المادة</label><input id="subject" type="text" placeholder="مثال: رياضيات" /></div>
+        <div><label>التاريخ</label><input id="date" type="date" /></div>
+      </div>
+      <div class="grid grid-3" style="margin-top:10px">
+        <div><label>المعلم/ـة</label><input id="teacher" type="text" placeholder="اسم المعلم/ـة" /></div>
+        <div><label>الصف</label><input id="grade" type="text" placeholder="مثال: خامس أ" /></div>
+        <div><label>الحصة</label><input id="period" type="text" placeholder="مثال: الثالثة" /></div>
+      </div>
+      <div class="grid grid-2" style="margin-top:10px">
+        <div><label>اسم الاستراتيجية</label>
+          <select id="strategy">
+            <option value="">— اختر —</option>
+            <option>التعلم الذاتي</option>
+            <option>التعلم التعاوني</option>
+            <option>العصف الذهني</option>
+            <option>التعلم القائم على المشروعات</option>
+            <option>التعلم المقلوب</option>
+            <option>فكر ـ زاوج ـ شارك</option>
+            <option>محطات التعلم</option>
+            <option>خرائط المفاهيم</option>
+          </select>
+        </div>
+        <div><label>زمن التنفيذ</label><input id="duration" type="text" placeholder="مثال: 45 دقيقة" /></div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:10px">
+        <div>
+          <label>الأهداف التعليمية</label>
+          <textarea id="goals" placeholder="اكتب الأهداف كبنود قصيرة. كل هدف في سطر."></textarea>
+        </div>
+        <div>
+          <label>المهارات المستهدفة</label>
+          <textarea id="skills" placeholder="مثل: التفكير الناقد، التواصل، حل المشكلات"></textarea>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:10px">
+        <div>
+          <label>التهيئة والإجراءات</label>
+          <textarea id="steps" placeholder="التمهيد، العرض، التقويم البنائي..."></textarea>
+        </div>
+        <div>
+          <label>الموارد والوسائل</label>
+          <textarea id="materials" placeholder="كتاب، سبورة ذكية، أوراق عمل، روابط رقمية"></textarea>
+        </div>
+      </div>
+
+      <div class="section" style="margin-top:10px">
+        <label style="font-weight:700">أنشطة المتعلمين</label>
+        <table class="activities-table" id="activitiesTbl">
+          <thead>
+            <tr>
+              <th style="width:40px">#</th>
+              <th>وصف النشاط</th>
+              <th style="width:140px">الزمن</th>
+              <th style="width:200px">أداة التقويم</th>
+              <th style="width:90px">حذف</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="btns"><button type="button" class="soft" id="addRow">إضافة نشاط</button></div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:10px">
+        <div>
+          <label>التقويم والدليل</label>
+          <textarea id="assessment" placeholder="أسئلة قصيرة، بطاقة ملاحظة، Rubric، Google Form"></textarea>
+        </div>
+        <div>
+          <label>الملاحظات</label>
+          <textarea id="notes" placeholder="ما الذي نجح؟ ما الذي يحتاج تحسين؟"></textarea>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:10px">
+        <div>
+          <label>النتائج والمؤشرات</label>
+          <textarea id="outcomes" placeholder="نسبة إنجاز الهدف، تفاعل الطلاب، شواهد..."></textarea>
+        </div>
+        <div>
+          <label>التوصيات والإجراءات اللاحقة</label>
+          <textarea id="reco" placeholder="خطوة علاجية، إثرائية، واجب، إعادة تخطيط"></textarea>
+        </div>
+      </div>
+
+      <div class="btns top">
+        <button type="button" class="primary" id="previewBtn">معاينة التقرير</button>
+        <button type="button" class="ghost" id="printBtn">طباعة</button>
+        <button type="button" class="soft" id="downloadBtn">تحميل PDF</button>
+        <button type="button" class="danger" id="resetBtn">تفريغ الحقول</button>
+      </div>
+      <p class="note top">تلميح: زر <b>طباعة</b> يحفظ كـ PDF من متصفحك مباشرة. زر <b>تحميل PDF</b> يولّد ملفًا آليًا بحجم A4.</p>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="preview-wrap">
+      <div class="a4" id="report" aria-label="تقرير تنفيذ الاستراتيجية">
+        <div class="hdr">
+          <div>
+            <h2>تقرير تنفيذ استراتيجية داخل الصف</h2>
+            <span class="tag" id="tagStrategy">—</span>
+          </div>
+          <div style="text-align:left">
+            <small id="genTime"></small><br />
+            <small>تنسيق A4</small>
+          </div>
+        </div>
+
+        <div class="kpi">
+          <div><b>المدرسة:</b> <span id="rSchool">—</span></div>
+          <div><b>المعلم/ـة:</b> <span id="rTeacher">—</span></div>
+          <div><b>القسم/المادة:</b> <span id="rSubject">—</span></div>
+          <div><b>التاريخ:</b> <span id="rDate">—</span></div>
+        </div>
+
+        <table class="meta-table">
+          <tr><th>الصف</th><td id="rGrade">—</td></tr>
+          <tr><th>الحصة</th><td id="rPeriod">—</td></tr>
+          <tr><th>زمن التنفيذ</th><td id="rDuration">—</td></tr>
+        </table>
+
+        <div class="section">
+          <h3>الأهداف التعليمية</h3>
+          <ul id="rGoals" style="margin:.25rem 1rem"></ul>
+        </div>
+
+        <div class="section">
+          <h3>المهارات المستهدفة</h3>
+          <p id="rSkills">—</p>
+        </div>
+
+        <div class="section">
+          <h3>التهيئة والإجراءات</h3>
+          <p id="rSteps">—</p>
+        </div>
+
+        <div class="section">
+          <h3>الموارد والوسائل</h3>
+          <p id="rMaterials">—</p>
+        </div>
+
+        <div class="section">
+          <h3>أنشطة المتعلمين</h3>
+          <table class="activities-table">
+            <thead><tr><th style="width:40px">#</th><th>الوصف</th><th style="width:120px">الزمن</th><th style="width:200px">أداة التقويم</th></tr></thead>
+            <tbody id="rActivities"></tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h3>التقويم والدليل</h3>
+          <p id="rAssessment">—</p>
+        </div>
+
+        <div class="section">
+          <h3>الملاحظات</h3>
+          <p id="rNotes">—</p>
+        </div>
+
+        <div class="section">
+          <h3>النتائج والمؤشرات</h3>
+          <p id="rOutcomes">—</p>
+        </div>
+
+        <div class="section">
+          <h3>التوصيات والإجراءات اللاحقة</h3>
+          <p id="rReco">—</p>
+        </div>
+
+        <div class="footer">
+          <span>مُولد تلقائيًا: <span id="rStamp">—</span></span>
+          <span>توقيع المعلم/ـة: ____________</span>
+        </div>
+      </div>
+
+      <div class="btns" style="justify-content:center;margin-top:12px">
+        <button type="button" class="ghost" onclick="window.scrollTo({top:0,behavior:'smooth'})">عودة لأعلى</button>
+        <button type="button" class="ghost" id="printBtn2">طباعة</button>
+        <button type="button" class="soft" id="downloadBtn2">تحميل PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- html2pdf (اختياري؛ يعمل عبر الإنترنت) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js" defer></script>
+
+  <script>
+  // Utils
+  const $ = (sel)=>document.querySelector(sel);
+  const $$ = (sel)=>document.querySelectorAll(sel);
+  const todayISO = ()=>new Date().toISOString().slice(0,10);
+
+  // Default date
+  $('#date').value = todayISO();
+
+  // Activities table handlers
+  const tbody = $('#activitiesTbl tbody');
+  function addRow(data={desc:'', time:'', tool:''}){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="idx"></td>
+      <td><textarea placeholder="وصف مختصر للنشاط">${data.desc||''}</textarea></td>
+      <td><input type="text" placeholder="مثال: 10 دقائق" value="${data.time||''}"/></td>
+      <td><input type="text" placeholder="بطاقة ملاحظة/سؤال شفهي/روبرك" value="${data.tool||''}"/></td>
+      <td style="text-align:center"><button type="button" class="danger rm">حذف</button></td>
+    `;
+    tbody.appendChild(tr);
+    renumber();
+  }
+  function renumber(){
+    [...tbody.rows].forEach((r,i)=>r.querySelector('.idx').textContent = i+1);
+  }
+  $('#addRow').addEventListener('click', ()=>addRow());
+  tbody.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('rm')){
+      e.target.closest('tr').remove();
+      renumber();
+    }
+  });
+  // Seed one row
+  addRow();
+
+  // Collect form data
+  function collect(){
+    const get = id=> (document.getElementById(id).value||'').trim();
+    const goals = get('goals').split('\n').map(s=>s.trim()).filter(Boolean);
+    const acts = [...tbody.rows].map(r=>({
+      desc: r.cells[1].querySelector('textarea').value.trim(),
+      time: r.cells[2].querySelector('input').value.trim(),
+      tool: r.cells[3].querySelector('input').value.trim()
+    })).filter(a=>a.desc||a.time||a.tool);
+
+    return {
+      school:get('school'), subject:get('subject'), date:get('date'),
+      teacher:get('teacher'), grade:get('grade'), period:get('period'),
+      strategy:get('strategy'), duration:get('duration'),
+      goals, skills:get('skills'), steps:get('steps'),
+      materials:get('materials'), activities:acts,
+      assessment:get('assessment'), notes:get('notes'),
+      outcomes:get('outcomes'), reco:get('reco')
+    };
+  }
+
+  // Fill report
+  function fillReport(d){
+    const set=(id,val)=>document.getElementById(id).textContent = val||'—';
+    set('rSchool', d.school);
+    set('rTeacher', d.teacher);
+    set('rSubject', d.subject);
+    set('rDate', d.date);
+    set('rGrade', d.grade);
+    set('rPeriod', d.period);
+    set('rDuration', d.duration);
+    $('#tagStrategy').textContent = d.strategy || '—';
+    // Lists
+    const ul = $('#rGoals'); ul.innerHTML = '';
+    (d.goals.length?d.goals:['—']).forEach(g=>{
+      const li = document.createElement('li'); li.textContent = g; ul.appendChild(li);
+    });
+    set('rSkills', d.skills);
+    set('rSteps', d.steps);
+    set('rMaterials', d.materials);
+    // Activities
+    const rTbody = $('#rActivities'); rTbody.innerHTML = '';
+    if(d.activities.length){
+      d.activities.forEach((a,i)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${i+1}</td><td>${a.desc||'—'}</td><td>${a.time||'—'}</td><td>${a.tool||'—'}</td>`;
+        rTbody.appendChild(tr);
+      });
+    }else{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td colspan="4">— لا توجد أنشطة مدخلة —</td>`;
+      rTbody.appendChild(tr);
+    }
+    set('rAssessment', d.assessment);
+    set('rNotes', d.notes);
+    set('rOutcomes', d.outcomes);
+    set('rReco', d.reco);
+    // Stamps
+    const now = new Date();
+    $('#genTime').textContent = 'وقت التوليد: ' + now.toLocaleString('ar-SA');
+    $('#rStamp').textContent = now.toLocaleString('ar-SA');
+  }
+
+  // Buttons
+  $('#previewBtn').addEventListener('click', ()=>{
+    const data = collect();
+    fillReport(data);
+    document.getElementById('report').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  function doPrint(){
+    // Ensure latest preview
+    fillReport(collect());
+    setTimeout(()=>window.print(), 50);
+  }
+  $('#printBtn').addEventListener('click', doPrint);
+  $('#printBtn2').addEventListener('click', doPrint);
+
+  async function downloadPDF(){
+    // Ensure latest preview
+    fillReport(collect());
+    const el = document.getElementById('report');
+    const opt = {
+      margin:       [10,10,10,10], // mm
+      filename:     'تقرير-تنفيذ-الاستراتيجية.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS:true, background:'#ffffff' },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak:    { mode: ['css', 'legacy'] }
+    };
+    if(typeof html2pdf !== 'undefined'){
+      await html2pdf().set(opt).from(el).save();
+    }else{
+      alert('لم يتم تحميل مكتبة توليد PDF. استخدم زر الطباعة أو اتصل بالإنترنت للمكتبة.');
+    }
+  }
+  $('#downloadBtn').addEventListener('click', downloadPDF);
+  $('#downloadBtn2').addEventListener('click', downloadPDF);
+
+  $('#resetBtn').addEventListener('click', ()=>{
+    if(!confirm('تفريغ كل الحقول؟')) return;
+    $$('input, textarea, select').forEach(el=>{
+      if(el.type==='date') el.value = todayISO();
+      else if(el.tagName==='SELECT') el.value = '';
+      else el.value = '';
+    });
+    tbody.innerHTML=''; addRow();
+    fillReport(collect());
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  // Initial fill
+  fillReport(collect());
+  </script>
+</body>
+</html>
